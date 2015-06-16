@@ -26,10 +26,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       case platform
       when 'centos-5.10'
         epel = "rpm -Uvh http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/5/x86_64/epel-release-5-4.noarch.rpm"
+        extra = "gcc44 gcc44-c++"
       when 'centos-6.5'
         epel = "yum -y install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm"
+        extra = ""
       when 'centos-7.0'
         epel = "yum -y install epel-release"
+        extra = ""
       else
         raise "Unknown platform: #{platform}"
       end
@@ -39,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #{epel}
 
         # packages
-        yum -y install \
+        yum -y install #{extra} \
           git \
           openssl-devel \
           make \
@@ -60,6 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           libxml2-devel \
           fakeroot \
           rpm-build
+
 
         # rbenv and ruby
         yum -y remove ruby
