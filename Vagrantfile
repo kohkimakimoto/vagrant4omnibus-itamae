@@ -25,18 +25,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       case platform
       when 'centos-5.10'
-        epel = "http://ftp.riken.jp/Linux/fedora/epel/5/x86_64/epel-release-5-4.noarch.rpm"
+        epel = "rpm -Uvh http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/5/x86_64/epel-release-5-4.noarch.rpm"
       when 'centos-6.5'
-        epel = "http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm"
+        epel = "yum -y install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm"
       when 'centos-7.0'
-        epel = "epel-release"
+        epel = "yum -y install epel-release"
       else
         raise "Unknown platform: #{platform}"
       end
 
       c.vm.provision :shell, :inline => <<-EOT
         # epel repo
-        yum -y install #{epel}
+        #{epel}
 
         # packages
         yum -y install \
