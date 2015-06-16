@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 %w{
     centos-6.5
     centos-7.0
+    centos-5.10
   }.each_with_index do |platform, index|
 
     config.vbguest.auto_update = false
@@ -23,6 +24,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       c.vm.network :private_network, ip:"192.168.56.18#{index}"
 
       case platform
+      when 'centos-5.10'
+        epel = "http://ftp.riken.jp/Linux/fedora/epel/5/x86_64/epel-release-5-4.noarch.rpm"
       when 'centos-6.5'
         epel = "http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm"
       when 'centos-7.0'
