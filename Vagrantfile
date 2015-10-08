@@ -64,6 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           fakeroot \
           rpm-build
 
+        yum -y update
 
         # rbenv and ruby
         yum -y remove ruby
@@ -73,8 +74,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         cd
         source .bash_profile
         git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-        rbenv install 2.2.1
-        rbenv global 2.2.1
+        rbenv install 2.2.3
+        rbenv global 2.2.3
 
         # gem
         gem install bundler
@@ -95,7 +96,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       c.vm.provider :virtualbox do |vb|
         vb.gui = false
-        vb.customize ["modifyvm", :id, "--memory", "2048"]
+        vb.customize ["modifyvm", :id, "--memory", "3072"]
       end
 
     end
