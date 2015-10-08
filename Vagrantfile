@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         extra = "gcc44 gcc44-c++"
         extra_process = <<-EOT
 # need to download openssl manually on centos5
+# https://github.com/chef/omnibus/issues/531
 mkdir -p /var/cache/omnibus/cache
 cd /var/cache/omnibus/cache
 wget http://www.openssl.org/source/openssl-1.0.1p.tar.gz
