@@ -32,9 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 mkdir -p /var/cache/omnibus/cache
 cd /var/cache/omnibus/cache
 wget http://www.openssl.org/source/openssl-1.0.1p.tar.gz
-
 cd
-
 EOT
       when 'centos-6.5'
         epel = "yum -y install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm"
